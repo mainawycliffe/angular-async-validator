@@ -4,35 +4,35 @@
       <div class="column is-4 is-offset-4 has-text-centered">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-header-title is-1">Log in</h3>
+            <h3 class="card-header-title is-1">Async Validator</h3>
           </div>
           <div class="card-content">
-            <form [formGroup]="frmLogin">
+            <form [formGroup]="frmAsyncValidator">
               <div class="field has-text-left">
                 <label class="label">Username </label>
-                <div class="control">
+                <div [ngClass]="{'is-loading': frmAsyncValidator.controls['username'].pending }" class="control">
                   <input [ngClass]="{'is-danger': hasError('username', 'any')}" formControlName="username"
                     class="input is-focused" type="username" placeholder="Your username" autofocus="">
                 </div>
-                <div class="has-text-danger" *ngIf="hasError('username', 'username')">
+                <div class="has-text-danger" *ngIf="hasError('username', 'required')">
                   A valid username is required!
                 </div>
+                <div class="has-text-danger" *ngIf="frmAsyncValidator.controls['username'].errors?.usernameExists">
+                  This username is already taken!
+                </div>
               </div>
-
               <div class="field has-text-left">
-                <label class="label">Password </label>
-                <div class="control">
-                  <input [ngClass]="{'is-danger': hasError('password', 'any')}" formControlName="password"
-                    class="input is-focused" type="password" placeholder="Your Password">
+                <label class="label">Username (Update on Blur) </label>
+                <div [ngClass]="{'is-loading': frmAsyncValidator.controls['username2'].pending }" class="control">
+                  <input [ngClass]="{'is-danger': hasError('username2', 'any')}" formControlName="username2"
+                    class="input is-focused" type="username2" placeholder="Your username" autofocus="">
                 </div>
-                <div class="has-text-danger" *ngIf="hasError('password', 'required')">
-                  Password is required!
+                <div class="has-text-danger" *ngIf="hasError('username2', 'required')">
+                  A valid username is required!
                 </div>
-              </div>
-              <div class="field">
-                <button [disabled]="frmLogin.invalid" class="button is-block is-primary has-text-white is-fullwidth ">
-                  Create Account
-                </button>
+                <div class="has-text-danger" *ngIf="frmAsyncValidator.controls['username2'].errors?.usernameExists">
+                  This username is already taken!
+                </div>
               </div>
             </form>
           </div>
