@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsernamesService } from './usernames.service';
+import { UsernameValidationService } from './usernames.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private usernameService: UsernamesService
+    private usernameService: UsernameValidationService
   ) {
     this.frmAsyncValidator = this.createForm();
   }
@@ -42,14 +42,14 @@ export class AppComponent implements OnInit {
       username: [
         null,
         [Validators.required],
-        [this.usernameService.userValidator()]
+        [this.usernameService.usernameValidator()]
       ],
       username2: [
         // this updates on blur
         null,
         {
           validators: [Validators.required],
-          asyncValidators: [this.usernameService.userValidator()],
+          asyncValidators: [this.usernameService.usernameValidator()],
           updateOn: 'blur'
         }
       ]

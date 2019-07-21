@@ -12,7 +12,7 @@
                 <label class="label">Username </label>
                 <div [ngClass]="{'is-loading': frmAsyncValidator.controls['username'].pending }" class="control">
                   <input [ngClass]="{'is-danger': hasError('username', 'any')}" formControlName="username"
-                    class="input is-focused" type="username" placeholder="Your username" autofocus="">
+                    class="input is-focused" type="username" placeholder="Your username">
                 </div>
                 <div class="has-text-danger" *ngIf="hasError('username', 'required')">
                   A valid username is required!
@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div class="field has-text-left">
-                <label class="label">Username (Update on Blur) </label>
+                <label class="label">Username (Update on Blur for perfomance reasons) </label>
                 <div [ngClass]="{'is-loading': frmAsyncValidator.controls['username2'].pending }" class="control">
                   <input [ngClass]="{'is-danger': hasError('username2', 'any')}" formControlName="username2"
                     class="input is-focused" type="username2" placeholder="Your username" autofocus="">
